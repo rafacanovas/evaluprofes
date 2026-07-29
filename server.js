@@ -9,7 +9,11 @@ const DATA_FILE = path.join(__dirname, 'data.json');
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
+
+// Servir el index.html desde la raíz
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 // Inicializar archivo de datos si no existe
 if (!fs.existsSync(DATA_FILE)) {
